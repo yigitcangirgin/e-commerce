@@ -32,7 +32,7 @@
                 <h4> {{cart.product.name}}</h4>
                 <form action="/order/deletefromcart/{{cart.id}}" method="post">
                   {% csrf_token %}
-                  
+
                 <button
                 type="submit"
                 id="button"
@@ -49,53 +49,54 @@
                 <!-- Data -->
               </div>
               
-              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+              <div class="col-lg-4 col-md-6 mb-1 mb-lg-0">
                 <!-- Quantity -->
-                
-                <div class="d-flex mb-4" style="max-width: 300px">
-                  
-                  <form action="/order/lessfromcart/{{cart.id}}" method="post">
-                    {% csrf_token %}
-                  <button
-                  type="submit"
-                    class="btn btn-outline-danger px-3 me-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                  >
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </form>
-
+                <div class="d-flex mb-4" style="max-width: 300px">    
                   <div class="form-outline">
+                    <form action="/order/lessfromcart/{{cart.id}}" method="post">
+                      {% csrf_token %}
+                      <input
+                        id="form1"
+                        min="1"
+                        name="quantity"
+                        value="{{cart.quantity}}"
+                        type="number"
+                        class="form-control"
+                        placeholder="Quantity"
+                        max="{{product.amount}}"
+                      />
+                      <button type="submit" class="btn btn-outline-danger px-3 me-2">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                    </form>
                     <form action="/order/upgradefromcart/{{cart.id}}" method="post">
                       {% csrf_token %}
-                    <input
-                      id="form1"
-                      min="0"
-                      name="quantity"
-                      value="{{cart.quantity}}"
-                      type="number"
-                      class="form-control"
-                      placeholder="Quantity"
-                      max="{{product.amount}}"
-                    />
-                  </div>
+                      <input
+                        type="hidden"
+                        id="form2"
+                        min="1"
+                        name="quantity"
+                        value="{{cart.quantity}}"
+                        class="form-control"
+                        placeholder="Quantity"
+                        max="{{product.amount}}"
+                      />
+                      <button type="submit" class="btn btn-outline-danger px-3 ms-2">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </form>
                   
-                  <button
-                  type="submit"
-                    class="btn btn-outline-danger px-3 ms-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                  >
-                    <i class="fas fa-plus"></i>
-                  </button>
-                
+                  </div>
+                   
                 </div>
+                
               </form>
                 <!-- Quantity -->
 
                 <!-- Price -->
                 <p class="text-start text-md-right">
                   
-            <strong> {{cart.amount}} $</strong>
+            <strong> {{cart.amount}} TL</strong>
                 </p>
                 <!-- Price -->
               </div>
@@ -125,81 +126,29 @@
           </div>
           
           
-          <div class="card-body" style="background-color: #fb5849">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="mb-0">Kart Bilgileri</h5>
-            </div>
-
-            <p class="small mb-2">Kart Tipi</p>
-            <a href="#!" type="submit" class="text-white"><i
-                class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-            <a href="#!" type="submit" class="text-white"><i
-                class="fab fa-cc-visa fa-2x me-2"></i></a>
-            <a href="#!" type="submit" class="text-white"><i
-                class="fab fa-cc-amex fa-2x me-2"></i></a>
-            <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
-
-            <form class="mt-4">
-              <div class="form-outline form-white mb-4">
-                <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                  placeholder="Kart Sahibinin Adı"required />
-                <label class="form-label" for="typeName">Kart Sahibinin Adı</label>
-              </div>
-
-              <div class="form-outline form-white mb-4">
-                <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                  placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" required/>
-                <label class="form-label" for="typeText">Kart Numarası</label>
-              </div>
-
-              <div class="row mb-4">
-                <div class="col-md-6">
-                  <div class="form-outline form-white">
-                    <input type="text" id="typeExp" class="form-control form-control-lg"
-                      placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" required/>
-                    <label class="form-label" for="typeExp">Son Kullanım Tarihi</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-outline form-white">
-                    <input type="password" id="typeText" class="form-control form-control-lg"
-                      placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" required/>
-                    <label class="form-label" for="typeText">Cvv</label>
-                  </div>
-                </div>
-              </div>
-
-            </form>
-
-            <hr class="my-4">
-
-
-            
-
-
             <div class="d-flex justify-content-between">
               <p class="mb-2">Ürün Toplam Fiyatı</p>
               <p class="mb-2">{% if total %}
-                ${{total}} 
+                {{total}} TL
                  {% endif %}</p>
             </div>
 
             <div class="d-flex justify-content-between">
               <p class="mb-2">Shipping</p>
-              <p class="mb-2">$0.00</p>
+              <p class="mb-2">0.00 TL</p>
             </div>
 
             <div class="d-flex justify-content-between mb-4">
               <p class="mb-2">Toplam</p>
               <p class="mb-2">{% if total %}
-                ${{total}} 
+                {{total}} TL 
                  {% endif %}</p>
             </div>
 
             <button type="button" class="btn btn-info btn-block btn-lg" id="siparisonay">
               <div class="d-flex justify-content-between">
                 <span>{% if total %}
-                  ${{total}} 
+                  {{total}} TL 
                    {% endif %}</span>
                 <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2" onclick=""></i></span>
               </div>

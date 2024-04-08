@@ -15,12 +15,8 @@
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
             <li class="scroll-to-section">
-              <a href="{% url 'home' %}" class="active">Home</a>
+              <a href="{% url 'home' %}" class="active">Anasayfa</a>
             </li>
-            <li class="scroll-to-section">
-              <a href="{% url 'aboutus' %}">About</a>
-            </li>
-
             <!-- 
                                 <li class="submenu">
                                     <a href="javascript:;">Drop Down</a>
@@ -32,28 +28,25 @@
                                 </li>
                             -->
             <li class="scroll-to-section">
-              <a href="{% url 'menu' %}">Menu</a>
+              <a href="{% url 'menu' %}">Urunler</a>
             </li>
             <li class="scroll-to-section">
-              <a href="{% url 'chef' %}">Chefs</a>
-            </li>
-            <li class="scroll-to-section">
-              <a href="{% url 'klassyweek' %}">Klassy Week</a>
+              <a href="{% url 'klassyweek' %}">E-pin Urunleri</a>
             </li>
             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
             <li class="scroll-to-section">
-              <a href="{% url 'contactus' %}">Contact Us</a>
+              <a href="{% url 'contactus' %}">İletisime Gec</a>
             </li>
             {% if user.is_authenticated %}
             <a
               class="nav-link"
               href="{% url 'logoutaccount' %}"
               style="color: #ff0000"
-              >Log Out
+              >Cikis Yap
             </a>
             {% else %}
-            <a class="nav-link" href="{% url 'loginaccount' %}">Login</a>
-            <a class="nav-link" href="{% url 'signupaccount' %}">Sign Up</a>
+            <a class="nav-link" href="{% url 'loginaccount' %}">Giris Yap</a>
+            <a class="nav-link" href="{% url 'signupaccount' %}">Kayit Ol</a>
             {% endif %} {% comment %}
             <li class="user_option">
               <a href="{% url 'signupaccount' %}" class="user_link"

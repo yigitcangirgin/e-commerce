@@ -75,6 +75,7 @@ def basket(request):
     total = 0
     for rs in schopcart:
         total += rs.product.price * rs.quantity
+        
     context = {
         'carts' : carts ,
         'products' : products,

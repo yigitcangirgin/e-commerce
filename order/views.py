@@ -40,7 +40,6 @@ def addtocart2(request , id):
             data = ShopCart()
             data.user_id = current_user.id
             data.product_id = id
-            
             data.quantity = 1
             data.save()
             messages.success(request , 'Ürün Başarılı')
@@ -62,10 +61,8 @@ def upgradefromcart(request, id):
             for item in data1:
                 item.quantity += 1
                 item.save()
+                
             messages.success(request , 'Ürün Başarılı')
-
-    
-       
             
         return HttpResponseRedirect(url)
 
@@ -80,12 +77,10 @@ def lessfromcart(request, id):
             data.product_id = id
             data.image = " "
             data1 = ShopCart.objects.filter(id = id)
-            print(data1)
+            print("s")
             for item in data1:
-                item.quantity -= 1
-                if item.quantity <= 1:
-                    pass
-                if item.quantity > 0:
+                if item.quantity > 1 :
+                    item.quantity -= 1
                     item.save()
                 
             messages.success(request , 'Ürün Başarılı')
